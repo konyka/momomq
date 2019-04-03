@@ -15,9 +15,28 @@
  */
  
 
-#ifndef __DARKBLUE_MUTEX_H__
-#define __DARKBLUE_MUTEX_H__
+#ifndef __DARKBLUE_MM_MUTEX_H__
+#define __DARKBLUE_MM_MUTEX_H__
 
 
 
-#endif /* __DARKBLUE_MUTEX_H__ */
+#ifdef MM_HAVE_WINDOWS
+#include "win.h"
+#else
+#include <pthread.h>
+#endif
+
+
+struct mm_mutex {
+    /*   私有字段  */
+#ifdef MM_HAVE_WINDOWS
+    CRITICAL_SECTION cs;
+    DWORD owner;
+    int debug;
+#else
+    pthread_mutex_t mutex;
+#endif
+};
+
+
+#endif /* __DARKBLUE_MM_MUTEX_H__ */
