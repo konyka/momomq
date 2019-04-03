@@ -3,7 +3,7 @@
  *  DarkBlue Engine Source File.
  *  Copyright (C), DarkBlue Studios.
  * -------------------------------------------------------------------------
- *    File name: utility.h
+ *    File name: alloc.h
  *      Version: v0.0.0
  *   Created on: Apr 3, 2019 by konyka
  *       Editor: Sublime Text3
@@ -15,8 +15,8 @@
  */
  
 
-#ifndef __DARKBLUE_UTILITY_H__
-#define __DARKBLUE_UTILITY_H__
+#ifndef __DARKBLUE_ALLOC_H__
+#define __DARKBLUE_ALLOC_H__
 
 这些函数可以拦截与内存分配相关的操作。
 
@@ -33,4 +33,4 @@ void *mm_alloc_ (size_t size, const char *name);
 void *mm_alloc_ (size_t size);
 #endif
 
-#endif /* __DARKBLUE_UTILITY_H__ */
+#endif /* __DARKBLUE_ALLOC_H__ */
