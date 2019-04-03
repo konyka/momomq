@@ -22,6 +22,22 @@
 extern "C" {
 #endif
 
+#include <errno.h>
+#include <stddef.h>
+#include <stdint.h>
+
+ /*
+  *Socket .定义
+  */                                                       
+
+
+struct mm_iovec {
+    size_t iov_len;
+    void *iov_base;
+};
+
+
+
 
 #ifdef __cplusplus
 }
