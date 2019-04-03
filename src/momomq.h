@@ -43,6 +43,11 @@ struct mm_msg_header {
     void *msg_control;
 };
 
+struct mm_cmsg_header {
+    size_t cmsg_len;
+    int cmsg_level;
+    int cmsg_type;
+};
 
 #ifdef __cplusplus
 }
