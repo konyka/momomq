@@ -18,6 +18,13 @@
 #ifndef __DARKBLUE_MOMOMQ_H__
 #define __DARKBLUE_MOMOMQ_H__
 
+#ifdef __cplusplus
+extern "C" {
+#endif
 
+
+#ifdef __cplusplus
+}
+#endif  
 
 #endif /* __DARKBLUE_MOMOMQ_H__ */
