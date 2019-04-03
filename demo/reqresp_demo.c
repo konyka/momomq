@@ -20,6 +20,7 @@
 #include <time.h>
 #include <sys/time.h>
 
+typedef unsigned long long uint64_t;
 /* 
 MAX_JOBS_NUMBER是队列化的、向外提供请求的数量限制。 如果超过这个限制，就不接受进来的请求。
 其原因是为了防止恶意客户端不断创建新的作业请求，从而消耗完所有的服务器资源。
@@ -46,12 +47,23 @@ uint64_t milliseconds (void)
     gettimeofday (&tv, NULL);
     return (((uint64_t)tv.tv_sec * 1000) + ((uint64_t)tv.tv_usec / 1000));
 }
-
+void usege(int argc, char *argv[]) {
+    fprintf (stderr, "usage: %s <mm url> [-s | name ]\n", argv[0]);
+}
 int main (int argc, char *argv[]) {
+
     if (argc < 3) {
-        fprintf (stderr, "usage: %s <url> [-s|name]\n", argv[0]);
+        usege(argc, argv);
         exit (EXIT_FAILURE);
     }
+
+        if (strcmp (argv[2], "-s") == 0) {
+        rc = server (argv[1]);
+    } else {
+        //rc = client (argv[1], argv[2]);
+    }
+    exit (rc == 0 ? EXIT_SUCCESS : EXIT_FAILURE);
+
 }
 
 
