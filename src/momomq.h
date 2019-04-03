@@ -36,7 +36,12 @@ struct mm_iovec {
     void *iov_base;
 };
 
-
+struct mm_msg_header {
+    int msg_iovlen;
+    struct mm_iovec *msg_iov;
+    size_t msg_controllen;  
+    void *msg_control;
+};
 
 
 #ifdef __cplusplus
