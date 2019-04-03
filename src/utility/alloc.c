@@ -16,11 +16,37 @@
  
 #include "alloc.h"
 
-#if defined NN_ALLOC_MONITOR
+#if defined mm_ALLOC_MONITOR
 
 // to do
 
 #else
+
+
+#include <stdlib.h>
+
+void mm_alloc_init (void)
+{
+}
+
+void mm_alloc_term (void)
+{
+}
+
+void *mm_alloc_ (size_t size)
+{
+    return malloc (size);
+}
+
+void *mm_realloc (void *ptr, size_t size)
+{
+    return realloc (ptr, size);
+}
+
+void mm_free (void *ptr)
+{
+    free (ptr);
+}
 
 //to do
 
