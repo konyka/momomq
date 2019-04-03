@@ -39,4 +39,19 @@ struct mm_mutex {
 };
 
 
+typedef struct mm_mutex mm_mutex_t;
+
+/*  初始化 mutex. */
+void mm_mutex_init (mm_mutex_t *self);
+
+/*  销毁 mutex. */
+void mm_mutex_term (mm_mutex_t *self);
+
+/*  上锁 mutex. 在相同的线程中多重上锁的行为是未定义的*/
+void mm_mutex_lock (mm_mutex_t *self);
+
+/*  解锁mutex. 解锁未上锁的mutex的行为是未定义的*/
+void mm_mutex_unlock (mm_mutex_t *self);
+
+
 #endif /* __DARKBLUE_MM_MUTEX_H__ */
