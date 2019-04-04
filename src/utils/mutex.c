@@ -26,7 +26,8 @@
 //to do
 void mm_mutex_init (mm_mutex_t *self)
 {
-    //to do
+    InitializeCriticalSection (&self->cs);
+    self->owner = 0;
 }
 
 void mm_mutex_term (mm_mutex_t *self)
