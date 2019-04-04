@@ -32,17 +32,26 @@ void mm_mutex_init (mm_mutex_t *self)
 
 void mm_mutex_term (mm_mutex_t *self)
 {
-    // to do
+        /*  释放上锁的临界区/互斥量 mutex. */
+    mm_assert(self->owner == 0);
+    DeleteCriticalSection (&self->cs);
 }
 
 void mm_mutex_lock (mm_mutex_t *self)
 {
-    // to do
+    EnterCriticalSection (&self->cs);
+
+    /*  确保不会递归进入临界区/互斥量mutex. */
+    mm_assert(self->owner == 0);
+    self->owner = GetCurrentThreadId();
 }
 
 void mm_mutex_unlock (mm_mutex_t *self)
 {
-    // to do
+    /*  确保我们持有的临界区/互斥量 就是我们正在释放的临界区/互斥量mutex  */
+    mm_assert(self->owner == GetCurrentThreadId());
+    self->owner = 0;
+    LeaveCriticalSection (&self->cs);
 }
 
 
