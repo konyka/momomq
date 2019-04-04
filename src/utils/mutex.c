@@ -45,7 +45,10 @@ void mm_mutex_init (mm_mutex_t *self)
 
 void mm_mutex_term (mm_mutex_t *self)
 {
-//to do
+    int rc;
+
+    rc = pthread_mutex_destroy (&self->mutex);
+    errnum_assert (rc == 0, rc);
 }
 
 void mm_mutex_lock (mm_mutex_t *self)
