@@ -1,0 +1,88 @@
+fast.h中的说明
+
+
+我们首先来看看LIKELY和UNLIKELY的宏定义：
+
+
+#define LIKELY(x) __builtin_expect(!!(x),1)
+#define UNLIKELY(x) __builtin_expect(!!(x),0)
+看到上面的宏定义，其实不难发现我们最主要的就是搞懂__builtin_expect这个宏。其实__builtin_expect这个宏定义变量本身的值是没有产生影响的。它的主要作用是在汇编层优化我们代码，减少跳转的次数。具体又是怎么做到的呢？我们首先从平常经常接触的代码入手。
+
+
+代码层的理解：
+为了方便分析，以及下一部分的测试。我们这里提供一个简单的代码：
+
+
+
+#define LIKELY(x) __builtin_expect(!!(x),1)
+#define UNLIKELY(x) __builtin_expect(!!(x),0)
+
+int test_likely(int x){
+    if(LIKELY(x)){
+        x=5;
+    }else{
+        x=6;
+    }
+    return x;
+}
+
+int test_unlikely(int x){
+    if(UNLIKELY(x)){
+        x=5;
+    }else{
+        x=6;
+    }
+    return x;
+}
+
+int test(int x){
+    if(x){
+        x=5;
+    }else{
+        x=6;
+    }
+    return x;
+}
+
+test函数就是我们日常经常使用的if-else条件判断。我们正常使用可能觉得没什么大问题。但是作为一个优秀程序员，总是追求做的更好。所以我们从这段代码里面发现了一个问题，就是日常生活中这种条件判断都是有偏向性的。比如使用if-else结构时会通过经常通过else补充一些意外性的情况。那这个时候，其实程序更多的是执行if里面的语句。也因此我们发现了这种偏向性可以优化的点。
+
+所以我们得到了最上方test_likely和test_unlikely中的if-else结构，
+当我们大部分的情况落在x=5时，我们采用test_likely中的解决办法。
+当我们大部分的情况落在x=6的情况时，我们则采用test_unlikely。
+
+但是这里可能有人会问，为什么能够减少跳转的次数。我们将在下面的汇编层的理解中，详细介绍。
+
+
+汇编层的理解：
+首先对于从程序得到汇编代码的方式有很多，然后不同平台不同的命令得到的汇编代码也会有差异。我的实验环境是在64位的Unbuntu14上完成。并且通过下面命令得到程序的汇编代码：
+
+
+
+gcc -fprofile-arcs -O2 -c test.c
+
+
+
+objdump -d test_builtin_expect.o
+
+
+
+获得汇编代码如下：
+
+
+
+
+
+
+从上面的汇编程序，我们可以发现test函数和优化过的两个函数主要有两个区别：
+
+1、跳转的优化，我们以test_likely为例。test %edi %edi测试了传入的参数x是否为0。若结果为0，ZF=1语句je执行跳转。但是这里是test_likely,也就是x参数大部分是1的情况。所以这里避免了大部分的跳转。同理看到test_unlikely，若x为0，ZF=1语句jne不执行跳转。
+
+2、第二个不同点是很多人忽略的，就是前面避免了跳转之后，我们可以看到执行完赋值语句之后马上利用了retq进行函数的返回。而test函数中只有一个返回。这样子的好处在哪里呢？我们可以想象一下如果不返回，那汇编里面需要利用jmp跳过else中的执行语句。所以如果这里只有一个retq，那么其实还是没法避免跳转。虽然这样做会造成汇编代码的冗余。但是执行效率无疑是提升的。
+
+
+
+--------------------- 
+作者：GrubLinux 
+来源：CSDN 
+原文：https://blog.csdn.net/grublinux/article/details/37543489 
+版权声明：本文为博主原创文章，转载请附上博文链接！
