@@ -17,13 +17,33 @@
 
 
  #include "mutex.h"
-
+#include "err.h"
 
 #include <stdlib.h>
 
 #ifdef MM_HAVE_WINDOWS
 
 //to do
+void mm_mutex_init (mm_mutex_t *self)
+{
+    //to do
+}
+
+void mm_mutex_term (mm_mutex_t *self)
+{
+    // to do
+}
+
+void mm_mutex_lock (mm_mutex_t *self)
+{
+    // to do
+}
+
+void mm_mutex_unlock (mm_mutex_t *self)
+{
+    // to do
+}
+
 
 #else
 
