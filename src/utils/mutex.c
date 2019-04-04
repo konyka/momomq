@@ -16,5 +16,17 @@
  
 
 
- 
+ #include "mutex.h"
 
+
+#include <stdlib.h>
+
+#ifdef MM_HAVE_WINDOWS
+
+//to do
+
+#else
+
+//to do
+
+#endif
