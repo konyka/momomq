@@ -43,6 +43,20 @@ void mm_mutex_init (mm_mutex_t *self)
 
 }
 
+void mm_mutex_term (mm_mutex_t *self)
+{
+//to do
+}
+
+void mm_mutex_lock (mm_mutex_t *self)
+{
+    // to do
+}
+
+void mm_mutex_unlock (mm_mutex_t *self)
+{
+    // to do
+}
 
 
 
