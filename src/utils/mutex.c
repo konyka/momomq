@@ -28,5 +28,22 @@
 #else
 
 //to do
+void mm_mutex_init (mm_mutex_t *self)
+{
+
+    int rc;
+    pthread_mutexattr_t attr;
+
+    pthread_mutexattr_init(&attr);
+    rc = pthread_mutexattr_settype(&attr, PTHREAD_MUTEX_ERRORCHECK);
+    errnum_assert (rc == 0, rc);
+    rc = pthread_mutex_init (&self->mutex, NULL);
+    errnum_assert (rc == 0, rc);
+    pthread_mutexattr_destroy(&attr);
+
+}
+
+
+
 
 #endif
