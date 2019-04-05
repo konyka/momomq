@@ -1,0 +1,16 @@
+attr.h中的说明
+
+__attribute__((unused))的作用
+
+在gcc手册中找到了有关的解释：
+unused：This attribute, attached to a function, means that the function is meant to be
+        possibly unused. GCC will not produce a warning for this function.
+===============================================================================
+used： This attribute, attached to a function, means that code must be emitted for the
+       function even if it appears that the function is not referenced. This is useful,
+       for example, when the function is referenced only in inline assembly.
+
+
+表示该函数或变量可能不使用，这个属性可以避免编译器产生警告信息
+
+
