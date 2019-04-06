@@ -32,7 +32,7 @@ struct mm_list {
 
 
 /**
- * 使用未定义的值初始化列表项，用来表示非列表项。
+ * 使用无效的值初始化列表项，用来表示非列表项。
  */
 #define MM_LIST_NOTINLIST ((struct mm_list_item*) -1)
 
