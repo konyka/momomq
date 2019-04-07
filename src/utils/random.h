@@ -25,7 +25,6 @@
  */
 void mm_random_seed ();
 
-/*  . */
 /**
  * [mm_random_generate  生成伪随机字节序列]
  * @param buf [description]
