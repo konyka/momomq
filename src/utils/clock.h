@@ -18,6 +18,12 @@
 #ifndef __DARKBLUE_MM_CLOCK_H__
 #define __DARKBLUE_MM_CLOCK_H__
 
+#include <stdint.h>
 
+/**
+ * [mm_clock_ms  返回当前时间，单位为毫秒]
+ * @return  [description]
+ */
+uint64_t mm_clock_ms (void);
 
 #endif /* __DARKBLUE_MM_CLOCK_H__ */
