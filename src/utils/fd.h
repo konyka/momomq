@@ -15,8 +15,8 @@
  */
  
 
-#ifndef __DARKBLUE_FD_H__
-#define __DARKBLUE_FD_H__
+#ifndef __DARKBLUE_MM_FD_H__
+#define __DARKBLUE_MM_FD_H__
 
 #ifdef MM_HAVE_WINDOWS
 #include "win.h"
@@ -25,4 +25,4 @@ typedef SOCKET mm_fd;
 typedef int mm_fd;
 #endif
 
-#endif /* __DARKBLUE_FD_H__ */
+#endif /* __DARKBLUE_MM_FD_H__ */
