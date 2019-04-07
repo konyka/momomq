@@ -16,7 +16,7 @@
  
 #include "alloc.h"
 
-#if defined mm_ALLOC_MONITOR
+#if defined MM_ALLOC_MONITOR
 
 // to do
 
