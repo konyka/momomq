@@ -18,6 +18,11 @@
 #ifndef __DARKBLUE_FD_H__
 #define __DARKBLUE_FD_H__
 
-
+#ifdef MM_HAVE_WINDOWS
+#include "win.h"
+typedef SOCKET mm_fd;
+#else
+typedef int mm_fd;
+#endif
 
 #endif /* __DARKBLUE_FD_H__ */
