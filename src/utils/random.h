@@ -27,8 +27,8 @@ void mm_random_seed ();
 
 /**
  * [mm_random_generate  生成伪随机字节序列]
- * @param buf [description]
- * @param len [description]
+ * @param buf [缓冲]
+ * @param len [长度]
  */
 void mm_random_generate (void *buf, size_t len);
 
