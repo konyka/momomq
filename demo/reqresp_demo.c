@@ -13,7 +13,7 @@
  *
  *===========================================================================
  */
- 
+ momomq.h
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -174,7 +174,7 @@ int server(const char *url)
         work->request.msg_iovlen = 0;  /*  无需发送负载数据 payload data. */
         work->request.msg_iov = NULL;
         work->request.msg_control = &work->control;
-        work->request.msg_controllen = MM_MSG;
+        work->request.msg_controllen = mm_MSG;
 
         /*  把工作请求插入到列表 */
         srch = &worklist;
